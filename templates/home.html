@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<style>
+body {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 20px;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+ 
+    50% {
+        background-position: 100% 50%;
+    }
+ 
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.container {
+  border: 2px solid #735dd4;
+  background-color:rgb(114, 85, 218);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 30% 0;
+}
+
+.darker {
+  border-color: rgb(177, 130, 221);
+  background-color: rgb(177, 130, 221);
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+</style>
+</head>
+<body>
+
+<div align="center">
+    <h2>Django Chat</h2>
+</div>
+
+
+<div class="container">
+    <style>
+    input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid rgb(175, 136, 211);
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* background-color: aqua; */
+    }
+
+    input[type=submit] {
+    width: 100%;
+    background-color:rgb(177, 130, 221);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+    background-color:rgb(129, 69, 185);
+    }
+
+    div {
+    border-radius: 5px;
+    background-color: rgb(207, 180, 233);
+    padding: 20px;
+    }
+    </style>
+
+    <form id="post-form" method="POST" action="checkroom">
+        {% csrf_token %}
+        <label>Room Name</label>
+        <input type="text" name="room_name" id="room_name" width="100px" />
+        <label>Username</label>
+        <input type="text" name="username" id="username" width="100px" />
+        <input type="submit" value="Enter Room">
+    </form>
+</div>
+<footer style="background-color: rgb(177, 130, 221); border-radius: 10px;">
+  <center>
+  <p >
+    <h3 style="font-size: 20px;">
+      Developed with ❤️ by Saumilya 🐿️
+    </h3>
+  </p>
+</center>
+</footer>
+
+
+</html>
