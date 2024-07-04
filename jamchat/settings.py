@@ -11,19 +11,22 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(os.path.join(BASE_DIR , '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8r$##r_tp=--$ed$ty$%%(t#wgnw*=3al183sp545*uiq5j#-6'
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.vercel.app']
 
@@ -74,10 +77,19 @@ WSGI_APPLICATION = 'jamchat.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+USERNAME= os.environ["USER"]
+PASSWORD= os.environ["PASSWORD"]
+API_URL="mongodb+srv://"+str(USERNAME)+":"+str(PASSWORD)+"@cluster0.sogfwgx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'CLIENT': {
+            'host': API_URL,
+            'username':USERNAME,
+            'password': PASSWORD,
+        },
+        'NAME': 'Jamchat',
     }
 }
 
